@@ -25,6 +25,6 @@ Pre - User management
    password : kevin142
 
 ## Lecturer/Staff
-1. email : abigail22@stduent.tarc.edu.my
+1. email : abigail22@lecturer.tarc.edu.my
    password : abc123
 
