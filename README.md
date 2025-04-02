@@ -15,7 +15,7 @@ Pre - User management
 1. Open Xampp and start Apache and MySQL
 3. start the project in a local host port
 4. run the local host port link 
-5. Make sure there is no ebookdb in the database.
+5. Make sure there is no questclassDB in the database.
 6. Run the project
 7. DONE
 
