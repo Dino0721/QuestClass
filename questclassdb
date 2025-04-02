@@ -1,0 +1,51 @@
+-- QuestClass Database Schema
+CREATE DATABASE QuestClass;
+USE QuestClass;
+
+CREATE TABLE User( 
+    user_id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(255) NOT NULL,
+    email VARCHAR(255) UNIQUE NOT NULL,
+    password_hash VARCHAR(255) NOT NULL,
+    role ENUM('student', 'lecturer') NOT NULL
+);
+
+-- Classrooms Table
+CREATE TABLE Classrooms (
+    class_id INT AUTO_INCREMENT PRIMARY KEY,
+    class_name VARCHAR(255) NOT NULL,
+    FOREIGN KEY (lecturer_id) REFERENCES Users(user_id) ON DELETE CASCADE
+);
+
+-- Quests Table
+CREATE TABLE Quests (
+    quest_id INT AUTO_INCREMENT PRIMARY KEY,
+    class_id INT,
+    Student_id INT NOT NULL,
+    title VARCHAR(255) NOT NULL,
+    description TEXT,
+    answer VARCHAR(255) NOT NULL,
+    deadline DATE,
+    FOREIGN KEY (class_id) REFERENCES Classrooms(class_id) ON DELETE CASCADE,
+    FOREIGN KEY (lecturer_id) REFERENCES Users(user_id) ON DELETE CASCADE
+);
+
+-- Attendance Table
+CREATE TABLE Attendance (
+    attendance_id INT AUTO_INCREMENT PRIMARY KEY,
+    student_id INT,
+    class_id INT,
+    question_answered TEXT NOT NULL,
+    attendance_date DATE NOT NULL,
+    FOREIGN KEY (student_id) REFERENCES Users(user_id) ON DELETE CASCADE,
+    FOREIGN KEY (class_id) REFERENCES Classrooms(class_id) ON DELETE CASCADE
+);
+
+-- Rewards Table
+CREATE TABLE Rewards (
+    reward_id INT AUTO_INCREMENT PRIMARY KEY,
+    reward_description VARCHAR(255) NOT NULL,
+    redemption_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (student_id) REFERENCES Users(user_id) ON DELETE CASCADE
+);
+
